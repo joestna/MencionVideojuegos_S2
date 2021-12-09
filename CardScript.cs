@@ -4,34 +4,32 @@ using UnityEngine;
 
 public class CardScript : MonoBehaviour
 {
+    SpriteRenderer imagen;
+
     public Sprite front;
     public Sprite back;
 
-    private bool posicionCarta = false;
+    private bool frontCard = false;
 
-    // Start is called before the first frame update
     void Start()
     {
-
+        imagen = GetComponent<SpriteRenderer>();        
     }
 
     private void OnMouseDown()
     {
-        if( !posicionCarta )
+        if( !frontCard)
         {
-            GetComponent<SpriteRenderer>().sprite = front;
-            posicionCarta = true;
+            imagen.sprite = front;
+            frontCard = true;
         }
         else
         {
-            GetComponent<SpriteRenderer>().sprite = back;
-            posicionCarta = false;
+            imagen.sprite = back;
+            frontCard = false;
         }
-        
-        Debug.Log("Click en carta " + name);
     }
 
-    // Update is called once per frame
     void Update()
     {
         
