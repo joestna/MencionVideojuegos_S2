@@ -8,6 +8,10 @@ public class CardScript : MonoBehaviour
 
     public Sprite front;
     public Sprite back;
+    public string nombre;
+    public int valor;
+
+    public GameManager gameManager;
 
     private bool frontCard = false;
 
@@ -22,6 +26,7 @@ public class CardScript : MonoBehaviour
         {
             imagen.sprite = front;
             frontCard = true;
+            gameManager.ClickOnCard(nombre, valor);
         }
         else
         {

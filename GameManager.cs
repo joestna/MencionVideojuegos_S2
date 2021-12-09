@@ -13,6 +13,12 @@ public class GameManager : MonoBehaviour
     public List<Sprite> listaCartasFrontales = new List<Sprite>();
     public List<int> cartasYaUtilizadas = new List<int>();
 
+    private string[,] informacionCartas =
+    {
+        {"Dowager Queen", "Guard", "Assasin", "Bishop", "Constable", "Jester", "Count", "Sycophant", "Baroness", "Cardinal"}, 
+        {"7", "1", "0", "9", "6", "0", "5", "4", "3", "2", }
+    };
+
     int cartaRepetida;
     int randomFrontal;
     int cartaContada = 0;
@@ -58,9 +64,12 @@ public class GameManager : MonoBehaviour
 
             CardScript cartaScript = carta.GetComponent<CardScript>();
 
+            cartaScript.gameManager = GetComponent<GameManager>();
             cartaScript.front = listaCartasFrontales[randomFrontal];
-          
-            carta.name = nombreCarta + (i + 1).ToString();
+            cartaScript.nombre = informacionCartas[0, randomFrontal]; // Nombre de la carta
+            cartaScript.valor = int.Parse(informacionCartas[1, randomFrontal]);
+            
+            carta.name = informacionCartas[0, randomFrontal]; // Nombre del GameObject carta
 
             listaCartas.Add( carta );
 
@@ -74,6 +83,11 @@ public class GameManager : MonoBehaviour
 
             cartaContada++;
         }       
+    }
+
+    public void ClickOnCard( string nombre, int valor )
+    {
+        Debug.Log( nombre + " - " + valor ); 
     }
 
     void Update()
