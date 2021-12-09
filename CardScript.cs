@@ -7,16 +7,27 @@ public class CardScript : MonoBehaviour
     public Sprite front;
     public Sprite back;
 
+    private bool posicionCarta = false;
+
     // Start is called before the first frame update
     void Start()
     {
 
     }
-    
-    // Click encima de la carta ( el GameObject tiene que tener un BoxColider )
-    // Dudas de como funciona, si creamos la funcion y no la estamos asignando ni llamando a nada como puede funcionar?
+
     private void OnMouseDown()
     {
+        if( !posicionCarta )
+        {
+            GetComponent<SpriteRenderer>().sprite = front;
+            posicionCarta = true;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().sprite = back;
+            posicionCarta = false;
+        }
+        
         Debug.Log("Click en carta " + name);
     }
 
@@ -25,3 +36,4 @@ public class CardScript : MonoBehaviour
     {
         
     }
+}
